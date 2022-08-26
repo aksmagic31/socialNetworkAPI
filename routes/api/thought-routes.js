@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const { Thought } = require('../../models')
+const { Thought, User } = require('../../models')
 
 //TODO: ROUTE TO GET ALL THOUGHTS
 router.get('/', async (req,res)=> {
@@ -17,6 +17,7 @@ router.get('/', async (req,res)=> {
 router.post('/', async (req,res)=> {
     try {
         let thoughtData = await Thought.create(req.body);
+        // let userData = await User.findOneAndUpdate({_id: })
         res.status(200).json(thoughtData);
     } catch (err) {
         console.log(err);

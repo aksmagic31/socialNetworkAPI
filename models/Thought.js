@@ -1,15 +1,14 @@
 const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
 
-// create the Thought Schema 
-
-
+// create the thought schema
 const thoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
-      required: 'Please Leave a Thought!',
+      required: 'Please leave a thought!',
       minlength: 1,
-      maxlength: 300
+      maxlength: 280
     },
     createdAt: {
       type: Date,
@@ -19,6 +18,10 @@ const thoughtSchema = new Schema(
       type: String,
       required: true
     },
+    reactions: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Reaction',
+    }],
   },
   {
     toJSON: {
@@ -27,6 +30,7 @@ const thoughtSchema = new Schema(
     id: false
   }
 );
+
 
 const Thought = model('Thought', thoughtSchema);
 
